@@ -1,0 +1,54 @@
+Scheduling
+----------------
+It simulates two operating system scheduling algorithms:
+First Come First Served (FCFS) and Round Robin (RR). 
+
+The program reads an input file that lists the information of the processes that need to be scheduled to run on the processor.
+It simulates scheduling these processes using one of the two algorithms and output the state of each process at every cycle time. 
+It supports statistics about the processes and output them after the simulation finishes.
+***After the program starts you will get 3 inputs in your program :
+--->0 or 1 to select the scheduling algorithm to use in your simulation. 
+     	0 refers to using First Come First Served (FCFS). 
+	1 refers to using Round Robin (RR).
+---> quantumTime: this is the quantum time to use in simulating the Round Robin algorithm. This must be a positive number that is greater than zero. This
+number presents if the first input is entered as 1 (RR).
+--->input FileName: the input file with the processes and their arrival and burst times.
+Each line in the input file contains four numbers interpreted as follows :
+ Process ID
+ CPU time : this is the time the process needs to execute on the CPU to complete.It is
+represented as a number of simulation cycles.
+ I/O time : his is the time the process will need to wait for I/O. Note that this is the
+number of simulation cycles a process will remain blocked, and you can safely
+assume that processes do not compete for the I/O devices.
+ Arrival time:this is the time the process becomes available in the system.It is
+represented as simulation time cycle.
+A process arriving at the system will run as follows. It will need to run for CPU time, block
+for I/O time, and then run for CPU time again. Note that all the numbers are integers. Few
+lines from an example input file are shown below:
+0 1 2 0
+1 1 1 5
+2 1 1 3
+In the above example, process 0 will run for one simulation cycle, then block for two
+simulation cycles, and finally run for one simulation cycle. The process might wait in the
+ready queue before being scheduled on the CPU to run. Note that a process added to the list
+of processes that are blocked for I/O can take any time in this list, and does not have to be
+removed from it before other processes added to the same list after it. In other words, it is a
+bad choice to simulate the list of blocked processes as a FIFO queue.
+
+
+There is output a text file FCFS_log_file.txt RR_log_file.txt the output file.
+The simulation of the scheduling starting from simulation time cycle 0. Every line shows the
+following:
+ Simulation cycle time.
+ The state of each process: Running, Ready, or Blocked. This should appear as
+follows: K: STATE to represent the state of process with ID K. 
+
+Statistics collected about the simulation:
+ Finishing time. This is the last simulation time at which all the processes have
+terminated.
+ CPU utilization. This can be calculated as the ratio between the number of the
+simulation
+ cycles at which the CPU was busy divided by the total number of the simulation
+cycles.
+ For each process, print the turnaround time. This is calculated as: (the cycle the
+process finished - the cycle the process arrived +1).
